@@ -7,8 +7,8 @@ export const userActions = {
     login,
     logout,
     register,
-    getAll,
-    delete: _delete
+     getAll
+    // delete: _delete
 };
 
 function login(username, password) {
@@ -17,7 +17,7 @@ function login(username, password) {
 
         userService.login(username, password)
             .then(
-                user => { 
+                user => {
                     dispatch(success(user));
                     history.push('/');
                 },
@@ -44,7 +44,7 @@ function register(user) {
 
         userService.register(user)
             .then(
-                user => { 
+                user => {
                     dispatch(success());
                     history.push('/login');
                     dispatch(alertActions.success('Registration successful'));
@@ -78,22 +78,22 @@ function getAll() {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
-    return dispatch => {
-        dispatch(request(id));
+// function _delete(id) {
+//     return dispatch => {
+//         dispatch(request(id));
 
-        userService.delete(id)
-            .then(
-                user => { 
-                    dispatch(success(id));
-                },
-                error => {
-                    dispatch(failure(id, error));
-                }
-            );
-    };
+//         userService.delete(id)
+//             .then(
+//                 user => {
+//                     dispatch(success(id));
+//                 },
+//                 error => {
+//                     dispatch(failure(id, error));
+//                 }
+//             );
+//     };
 
-    function request(id) { return { type: userConstants.DELETE_REQUEST, id } }
-    function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
-    function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
-}
+    // function request(id) { return { type: userConstants.DELETE_REQUEST, id } }
+    // function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
+//     // function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
+// }

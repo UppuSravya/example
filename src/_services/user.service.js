@@ -7,7 +7,7 @@ export const userService = {
     getAll,
     getById,
     update,
-    delete: _delete
+    // delete: _delete
 };
 
 function login(username, password) {
@@ -19,7 +19,7 @@ function login(username, password) {
 
     return fetch('/users/authenticate', requestOptions)
         .then(response => {
-            if (!response.ok) { 
+            if (!response.ok) {
                 return Promise.reject(response.statusText);
             }
 
@@ -80,17 +80,17 @@ function update(user) {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader()
-    };
+// function _delete(id) {
+//     const requestOptions = {
+//         method: 'DELETE',
+//         headers: authHeader()
+//     };
 
-    return fetch('/users/' + id, requestOptions).then(handleResponse);;
-}
+//     return fetch('/users/' + id, requestOptions).then(handleResponse);;
+// }
 
 function handleResponse(response) {
-    if (!response.ok) { 
+    if (!response.ok) {
         return Promise.reject(response.statusText);
     }
 
